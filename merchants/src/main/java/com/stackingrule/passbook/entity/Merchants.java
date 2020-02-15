@@ -52,4 +52,60 @@ public class Merchants {
     @Column(name = "is_audit", nullable = false)
     private Boolean isAudit = false;
 
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLogoUrl() {
+        return logoUrl;
+    }
+
+    public void setLogoUrl(String logoUrl) {
+        this.logoUrl = logoUrl;
+    }
+
+    public String getBusinessLicense() {
+        return businessLicense;
+    }
+
+    public void setBusinessLicense(String businessLicense) {
+        this.businessLicense = businessLicense;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Boolean getAudit() {
+        return isAudit;
+    }
+
+    public void setAudit(Boolean audit) {
+        isAudit = audit;
+    }
 }
