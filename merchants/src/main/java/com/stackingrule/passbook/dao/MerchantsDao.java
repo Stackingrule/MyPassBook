@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 /**
- * <h></h>
+ * <h>根据id获取</h>
  */
 public interface MerchantsDao extends JpaRepository<Merchants, Integer> {
 
