@@ -7,7 +7,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  * <h1>商户服务测试</h1>
@@ -20,7 +19,7 @@ public class MerchantsServiceTest {
     private IMerchantsService merchantsService;
 
     @Test
-    @Transactional
+    //@Transactional
     public void TestCreateMerchantServ() {
         CreateMerchantsRequest request = new CreateMerchantsRequest();
         request.setName("慕课");
@@ -30,6 +29,16 @@ public class MerchantsServiceTest {
         request.setAddress("北京市");
 
         System.out.println(JSON.toJSONString(merchantsService.createMerchants(request)));
+    }
+
+    /**
+     * {"data":{"address":"北京市","businessLicenseUrl":"www.imooc.com",
+     * "id":3,"isAudit":false,"logoUrl":"www.imooc.com",
+     * "name":"慕课","phone":"1234567890"},"errorCode":0,"errorMsg":""}
+     */
+    @Test
+    public void testBuildMerchantsInfoById() {
+        System.out.println(JSON.toJSONString(merchantsService.buildMerchantsInfoById(3)));
     }
 
 }
