@@ -113,7 +113,7 @@
     </dependencies>
 
     <build>
-        <finalName>UserPassBook</finalName>
+        <finalName>UserPassbook</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

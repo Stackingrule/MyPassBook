@@ -1,0 +1,10 @@
+create_namespace 'passbook'
+
+create 'passbook:user', {NAME => 'b', VERSIONS => '3', ttl => '2147483647', 'BLOOMFILTER' => 'row'}, {NAME => 'o', VERSIONS => '3', ttl => '2147483647', 'BLOOMFILTER' => 'row'}
+
+create 'passbook:pass', {NAME => 'i', VERSIONS => '3', ttl => '2147483647', 'BLOOMFILTER' => 'row'}
+
+create 'passbook:passtemplate', {NAME => 'b', VERSIONS => '3', ttl => '2147483647', 'BLOOMFILTER' => 'row'}, {NAME => 'c', VERSIONS => '3', ttl => '2147483647', 'BLOOMFILTER' => 'row'}
+
+create 'passbook:feedback', {NAME => 'i', VERSIONS => '3', ttl => '2147483647', 'BLOOMFILTER' => 'row'}
+

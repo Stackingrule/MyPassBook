@@ -1,0 +1,28 @@
+spring:
+  applicatio:
+    name: Passbook
+  datasource:
+    url:
+    username:
+    password:
+  kafka:
+    bootstrap-servers: 127.0.0.1:9092
+    consumer:
+      group-id: passbook
+    listener:
+      concurrency: 4
+  data:
+    hbase:
+      quorum: 127.0.0.1:2181
+      rootDir: file:///User/
+      nodeParent:
+  redis:
+    host:
+    port:
+
+server:
+  port:
+
+logging:
+  file: passbook.log
+  level: debug
