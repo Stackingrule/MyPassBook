@@ -2,11 +2,15 @@ package com.stackingrule.passbook.service;
 
 import com.alibaba.fastjson.JSON;
 import com.stackingrule.passbook.vo.CreateMerchantsRequest;
+import com.stackingrule.passbook.vo.PassTemplate;
+import org.apache.commons.lang.time.DateUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.Date;
 
 /**
  * <h1>商户服务测试</h1>
@@ -39,6 +43,32 @@ public class MerchantsServiceTest {
     @Test
     public void testBuildMerchantsInfoById() {
         System.out.println(JSON.toJSONString(merchantsService.buildMerchantsInfoById(3)));
+    }
+
+
+    /**
+     * DropPassTemplate: {"background":2,"desc":"详情： 慕课","end":1582619891597,
+     * "hasToken":false,"id":3,"limit":10000,"start":1581755891597,"summary":"简介： 慕课","title":"title: 慕课"}
+     * {"errorCode":0,"errorMsg":""}
+     */
+    @Test
+    public void testDropPassTemplate() {
+
+        PassTemplate passTemplate = new PassTemplate();
+        passTemplate.setId(3);
+        passTemplate.setTitle("title: 慕课");
+        passTemplate.setSummary("简介： 慕课");
+        passTemplate.setDesc("详情： 慕课");
+        passTemplate.setLimit(10000L);
+        passTemplate.setHasToken(false);
+        passTemplate.setBackground(2);
+        passTemplate.setStart(new Date());
+        passTemplate.setEnd(DateUtils.addDays(new Date(), 10));
+
+        System.out.println(JSON.toJSONString(
+                merchantsService.dropPassTemplate(passTemplate)
+        ));
+
     }
 
 }
