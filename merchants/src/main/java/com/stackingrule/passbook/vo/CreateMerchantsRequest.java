@@ -71,7 +71,7 @@ public class CreateMerchantsRequest {
 
         merchants.setName(name);
         merchants.setLogoUrl(logoUrl);
-        merchants.setBusinessLicense(businessLicenseUrl);
+        merchants.setBusinessLicenseUrl(businessLicenseUrl);
         merchants.setPhone(phone);
         merchants.setAddress(address);
 
