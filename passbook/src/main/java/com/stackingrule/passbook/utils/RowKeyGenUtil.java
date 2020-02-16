@@ -16,7 +16,7 @@ public class RowKeyGenUtil {
      * @param passTemplate {@link PassTemplate}
      * @return String RowKey
      */
-    public String genPassTemplateRowKey(PassTemplate passTemplate) {
+    public static String genPassTemplateRowKey(PassTemplate passTemplate) {
 
         String passInfo = String.valueOf(passTemplate.getId() + "_" + passTemplate.getTitle());
         String rowKey = DigestUtils.md5Hex(passInfo);
@@ -30,7 +30,7 @@ public class RowKeyGenUtil {
      * @param feedback {@link Feedback}
      * @return String RowKey
      */
-    public String genFeedbackRowKey(Feedback feedback) {
+    public static String genFeedbackRowKey(Feedback feedback) {
 
         return new StringBuilder(String.valueOf(feedback.getUserId())).reverse().toString() +
                 (Long.MAX_VALUE - System.currentTimeMillis());
