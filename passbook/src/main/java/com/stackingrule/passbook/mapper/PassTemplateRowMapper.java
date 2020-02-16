@@ -3,14 +3,9 @@ package com.stackingrule.passbook.mapper;
 import com.spring4all.spring.boot.starter.hbase.api.RowMapper;
 import com.stackingrule.passbook.constant.Constans;
 import com.stackingrule.passbook.vo.PassTemplate;
-import com.stackingrule.passbook.vo.User;
-import com.sun.xml.internal.ws.api.pipe.ServerTubeAssemblerContext;
 import org.apache.commons.lang.time.DateUtils;
 import org.apache.hadoop.hbase.client.Result;
 import org.apache.hadoop.hbase.util.Bytes;
-
-import javax.swing.*;
-import javax.xml.crypto.Data;
 
 /**
  * <h1>HBase PassTemplate Row to User Object</h1>
