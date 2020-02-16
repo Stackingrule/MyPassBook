@@ -3,7 +3,6 @@ package com.stackingrule.passbook.mapper;
 import com.spring4all.spring.boot.starter.hbase.api.RowMapper;
 import com.stackingrule.passbook.constant.Constants;
 import com.stackingrule.passbook.vo.Pass;
-import com.sun.xml.bind.v2.TODO;
 import org.apache.commons.lang.time.DateUtils;
 import org.apache.hadoop.hbase.client.Result;
 import org.apache.hadoop.hbase.util.Bytes;
