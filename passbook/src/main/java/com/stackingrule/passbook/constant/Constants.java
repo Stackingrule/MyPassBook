@@ -3,7 +3,7 @@ package com.stackingrule.passbook.constant;
 /**
  * <h1>常量定义</h1>
  */
-public class Constans {
+public class Constants {
 
     /** 商户优惠卷 Kafka Topic **/
     public static final String TEMPLATE_TOPIC = "merchants-template";

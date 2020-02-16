@@ -1,7 +1,7 @@
 package com.stackingrule.passbook.mapper;
 
 import com.spring4all.spring.boot.starter.hbase.api.RowMapper;
-import com.stackingrule.passbook.constant.Constans;
+import com.stackingrule.passbook.constant.Constants;
 import com.stackingrule.passbook.vo.User;
 import org.apache.hadoop.hbase.client.Result;
 import org.apache.hadoop.hbase.util.Bytes;
@@ -11,14 +11,14 @@ import org.apache.hadoop.hbase.util.Bytes;
  */
 public class UserRowMapper implements RowMapper<User> {
 
-    private static byte[] FAMILY_B = Constans.UserTable.FAMILY_B.getBytes();
-    private static byte[] NAME = Constans.UserTable.NAME.getBytes();
-    private static byte[] AGE = Constans.UserTable.AGE.getBytes();
-    private static byte[] SEX = Constans.UserTable.SEX.getBytes();
+    private static byte[] FAMILY_B = Constants.UserTable.FAMILY_B.getBytes();
+    private static byte[] NAME = Constants.UserTable.NAME.getBytes();
+    private static byte[] AGE = Constants.UserTable.AGE.getBytes();
+    private static byte[] SEX = Constants.UserTable.SEX.getBytes();
 
-    private static byte[] FAMILY_O = Constans.UserTable.FAMILY_O.getBytes();
-    private static byte[] PHONE = Constans.UserTable.PHONE.getBytes();
-    private static byte[] ADDRESS = Constans.UserTable.ADDRESS.getBytes();
+    private static byte[] FAMILY_O = Constants.UserTable.FAMILY_O.getBytes();
+    private static byte[] PHONE = Constants.UserTable.PHONE.getBytes();
+    private static byte[] ADDRESS = Constants.UserTable.ADDRESS.getBytes();
 
 
     @Override
