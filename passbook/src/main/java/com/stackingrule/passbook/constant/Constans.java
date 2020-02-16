@@ -29,7 +29,7 @@ public class Constans {
         public static final String FAMILY_B = "b";
 
         /** 用户名 **/
-        public static final String NAMA = "name";
+        public static final String NAME = "name";
 
         /** 用户年龄 **/
         public static final String AGE = "age";
