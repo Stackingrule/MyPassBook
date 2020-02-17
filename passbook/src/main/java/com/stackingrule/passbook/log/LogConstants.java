@@ -17,7 +17,7 @@ public class LogConstants {
         public static final String USER_USED_PASS_INFO = "UserUsedPassInfo";
 
         /** 用户使用优惠卷 **/
-        public static final String USER_USE_PASS_INFO = "UserUsePassInfo";
+        public static final String USER_USE_PASS = "UserUsePass";
 
         /** 用户获取库存信息 **/
         public static final String INVENTORY_INFO = "InventoryInfo";
