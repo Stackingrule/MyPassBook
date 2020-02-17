@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: Passbook
+  datasource:
+    url: jdbc:mysql://localhost:3306/passbook?characterEncoding=utf-8&useSSL=false&serverTimezone=Hongkong
+    username: root
+    password: bd1998
+  kafka:
+    bootstrap-servers: 127.0.0.1:9092
+    consumer:
+      group-id: passbook
+    listener:
+      concurrency: 4
+  data:
+    hbase:
+      quorum: 127.0.0.1:2181
+      rootDir: file:///User/
+      nodeParent: /hbase
+  redis:
+    database: 9
+    host: 127.0.0.1
+    port: 6379
+
+server:
+  port: 9527
+
+#logging:
+#  file: passbook.log
+#  level: debug

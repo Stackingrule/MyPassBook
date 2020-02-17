@@ -128,7 +128,7 @@ public class InventoryServiceImpl implements IInventoryService {
                 PassTemplate::getId
         ).collect(Collectors.toList());
 
-        List<Merchants> merchants = merchantsDao.findByInIn(merchantsIds);
+        List<Merchants> merchants = merchantsDao.findByIdIn(merchantsIds);
         merchants.forEach(m -> merchantsMap.put(m.getId(), m));
 
         List<PassTemplateInfo> result = new ArrayList<>(passTemplates.size());

@@ -2,7 +2,6 @@ package com.stackingrule.passbook.controller;
 
 import com.stackingrule.passbook.log.LogConstants;
 import com.stackingrule.passbook.log.LogGenerator;
-import com.stackingrule.passbook.service.IUserPassService;
 import com.stackingrule.passbook.service.IUserService;
 import com.stackingrule.passbook.vo.Response;
 import com.stackingrule.passbook.vo.User;

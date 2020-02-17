@@ -20,6 +20,7 @@ import org.apache.hadoop.hbase.filter.*;
 import org.apache.hadoop.hbase.util.Bytes;
 import org.apache.http.client.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -28,6 +29,7 @@ import java.util.stream.Collectors;
  * <h1>用户优惠卷相关功能实现</h1>
  */
 @Slf4j
+@Service
 public class UserPassService implements IUserPassService {
 
     /** HBase 客户端 **/
@@ -241,7 +243,7 @@ public class UserPassService implements IUserPassService {
         List<Integer> merchantsIds = passTemplates.stream().map(
                 PassTemplate::getId
         ).collect(Collectors.toList());
-        List<Merchants> merchants = merchantsDao.findByInIn(merchantsIds);
+        List<Merchants> merchants = merchantsDao.findByIdIn(merchantsIds);
 
         merchants.forEach(m -> merchantsMap.put(m.getId(), m));
 
