@@ -1,16 +1,21 @@
 package com.stackingrule.passbook.service.impl;
 
+import com.alibaba.fastjson.JSON;
+import com.mysql.cj.exceptions.ClosedOnExpiredPasswordException;
 import com.spring4all.spring.boot.starter.hbase.api.HbaseTemplate;
 import com.stackingrule.passbook.constant.Constants;
+import com.stackingrule.passbook.mapper.PassTemplateRowMapper;
 import com.stackingrule.passbook.service.IGainPassTemplateService;
 import com.stackingrule.passbook.utils.RowKeyGenUtil;
 import com.stackingrule.passbook.vo.GainPassTemplateRequest;
+import com.stackingrule.passbook.vo.PassTemplate;
 import com.stackingrule.passbook.vo.Response;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.time.DateFormatUtils;
 import org.apache.hadoop.hbase.client.Mutation;
 import org.apache.hadoop.hbase.client.Put;
 import org.apache.hadoop.hbase.util.Bytes;
+import org.apache.tomcat.util.http.fileupload.util.LimitedInputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
@@ -45,7 +50,57 @@ public class GainPassTemplateServiceImpl implements IGainPassTemplateService {
 
     @Override
     public Response gainPassTemplate(GainPassTemplateRequest request) throws Exception {
-        return null;
+
+        PassTemplate passTemplate;
+        String passTemplateId = RowKeyGenUtil.genPassTemplateRowKey(request.getPassTemplate());
+
+        try {
+            passTemplate = hbaseTemplate.get(
+                    Constants.PassTable.TABLE_NAME,
+                    passTemplateId,
+                    new PassTemplateRowMapper()
+            );
+        } catch (Exception e) {
+            log.error("Gain PassTemplate Error: {}", JSON.toJSONString(request.getPassTemplate()));
+            return Response.failure("Gain PassTemplate Error!");
+        }
+
+        if (passTemplate.getLimit() <= 1 && passTemplate.getLimit() != -1) {
+            log.error("PassTemplate Limit Max : {}", JSON.toJSONString(request.getPassTemplate()));
+            return Response.failure("PassTemplate Limit Max!");
+        }
+
+        Date cur = new Date();
+
+        if (!(cur.getTime() >= passTemplate.getStart().getTime()
+                && cur.getTime() < passTemplate.getEnd().getTime())) {
+            log.error("PassTemplate ValidTime Error: {}", JSON.toJSONString(request.getPassTemplate()));
+            return Response.failure("PassTemplate ValidTime Error!");
+        }
+
+        // 减去优惠卷 limit
+        if (passTemplate.getLimit() != -1) {
+            List<Mutation> datas = new ArrayList<>();
+            byte[] FAMILY_C = Constants.PassTemplateTable.FAMILY_C.getBytes();
+            byte[] LIMIT = Constants.PassTemplateTable.LIMIT.getBytes();
+
+            Put put = new Put(
+                    Bytes.toBytes(passTemplateId)
+            );
+            put.addColumn(FAMILY_C, LIMIT,
+                    Bytes.toBytes(passTemplate.getLimit() - 1));
+
+            datas.add(put);
+
+            hbaseTemplate.saveOrUpdate(Constants.PassTemplateTable.TABLE_NAME, (Mutation) datas);
+        }
+
+        // 将优惠卷保存到用户优惠卷表
+        if (!addPassForUser(request, passTemplate.getId(), passTemplateId)) {
+            return Response.failure("GainPassTemplate Failure!");
+        }
+
+        return Response.success();
     }
 
     /**
